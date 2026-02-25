@@ -4,155 +4,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIClaw | Global Intelligence</title>
+    <title>AIClaw Intelligence</title>
     <style>
         :root { --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --text: #f1f5f9; }
-        body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; margin: 0; padding: 20px 20px 120px 20px; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px 20px 100px 20px; }
         .container { max-width: 800px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); padding-bottom: 15px; margin-bottom: 25px; }
-        .toggle-btn { background: var(--accent); color: #000; border: none; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.85rem; }
-        
-        .news-card { background: var(--card); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        .news-card h3 { margin: 0 0 10px 0; color: var(--accent); font-size: 1.25rem; }
-        .news-card p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
-        .news-card a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 6px; }
-        .news-card a:hover { background: var(--accent); color: #000; }
-
-        /* Multi-language Logic */
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); padding-bottom: 15px; margin-bottom: 20px; }
+        .toggle-btn { background: var(--accent); color: #000; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .news-card { background: var(--card); padding: 20px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .news-card h3 { margin: 0 0 10px 0; color: var(--accent); }
+        .news-card p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
+        .news-card a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--accent); padding: 4px 10px; border-radius: 6px; display: inline-block; margin-top: 10px; }
         .lang-zh { display: none; }
         body.zh-mode .lang-zh { display: block; }
         body.zh-mode .lang-en { display: none; }
         body.zh-mode .en-text { display: none; }
         body.zh-mode .zh-text { display: inline; }
         .zh-text { display: none; }
-
-        #chat-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; padding: 15px; border-top: 1px solid var(--accent); }
-        .chat-box { max-width: 800px; margin: 0 auto; display: flex; gap: 10px; }
-        #chat-input { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; }
-        #chat-btn { background: var(--accent); border: none; padding: 0 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
-<body>
+<body class="">
     <div class="container">
         <div class="header">
-            <h1>🚀 <span class="en-text">Alpha Intelligence</span><span class="zh-text">Alpha 财经情报</span></h1>
-            <button class="toggle-btn" onclick="document.body.classList.toggle('zh-mode')">
-                <span class="en-text">中文</span><span class="zh-text">English</span>
-            </button>
+            <h1>🚀 <span class="en-text">Intelligence</span><span class="zh-text">财经情报</span></h1>
+            <button class="toggle-btn" onclick="document.body.classList.toggle('zh-mode')">中/EN</button>
         </div>
-        <div style="margin-bottom: 20px; font-size: 0.8rem; color: #64748b;">
-            <span class="en-text">Topics: AI, Investment, Finance | </span><span class="zh-text">分类：AI、投资、财经 | </span>
-            2026/2/25 15:58:09
-        </div>
-        <main><h1>Financial News Roundup</h1>
+        <main><h1>2026 Market Insights: A Bilingual Overview</h1>
 
- <h2>[Investment]</h2>
-
- <div class="news-card">
+<h2>AI</h2>
+<div class="news-card">
   <div class="lang-en">
-   <h3>Below $400 Again, Is Tesla Stock a Buy? - Yahoo Finance</h3>
-   <p>Tesla stock falls below $400 again. Analysis on whether it's a good investment opportunity.</p>
-   <a href="https://finance.yahoo.com/news/below-400-again-tesla-stock-040300625.html" target="_blank">Read More</a>
+    <h3>AI Stocks Reset In 2026. What's Next For Apple, Nvidia, Google And ...</h3>
+    <p>Investor concern exists over tech companies adding massive debt to fund data center infrastructure buildouts for AI. Other concerns include the securitization of loans to data center infrastructure builders and the growing "circularity" in the AI ecosystem.</p>
+    <a href="https://www.investors.com/news/technology/ai-stocks-artificial-intelligence-stocks-2026-disruption-openclaw-feb17/" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>再次跌破400美元，特斯拉股票值得购买吗？- 雅虎财经</h3>
-   <p>特斯拉股价再次跌破400美元。 分析是否是一个好的投资机会。</p>
-   <a href="https://finance.yahoo.com/news/below-400-again-tesla-stock-040300625.html" target="_blank">阅读原文</a>
+    <h3>2026年人工智能股票重置。苹果、英伟达、谷歌等公司的下一步是什么？</h3>
+    <p>投资者担心科技公司增加巨额债务来为人工智能数据中心基础设施建设提供资金。其他担忧包括将贷款证券化给数据中心基础设施建设者，以及人工智能生态系统中日益增长的“循环性”。</p>
+    <a href="https://www.investors.com/news/technology/ai-stocks-artificial-intelligence-stocks-2026-disruption-openclaw-feb17/" target="_blank">阅读原文</a>
   </div>
- </div>
+</div>
 
- <div class="news-card">
+<div class="news-card">
   <div class="lang-en">
-   <h3>Red day on Monday for Tesla stock after losing 2.91% - StockInvest.us</h3>
-   <p>Tesla stock price decreased by 2.91% on Monday, February 23, 2026. Negative signals are issued giving a more negative forecast for the stock.</p>
-   <a href="https://stockinvest.us/stock-news/red-day-on-monday-for-tesla-stock-after-losing-291-2026-02-23" target="_blank">Read More</a>
+    <h3>3 AI Stocks Outpacing NVIDIA in 2026 - With More Upside Ahead</h3>
+    <p>NVIDIA Corporation has consistently posted strong earnings, fueled by demand for its Blackwell chips, expanding AI partnerships, and increased data center investment.</p>
+    <a href="https://www.nasdaq.com/articles/3-ai-stocks-outpacing-nvidia-2026-more-upside-ahead" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>特斯拉股票周一遭遇下跌，跌幅2.91% - StockInvest.us</h3>
-   <p>特斯拉股价在2026年2月23日星期一下跌了2.91%。 发出了负面信号，对该股票给出了更为负面的预测。</p>
-   <a href="https://stockinvest.us/stock-news/red-day-on-monday-for-tesla-stock-after-losing-291-2026-02-23" target="_blank">阅读原文</a>
+    <h3>2026年超越英伟达的3只人工智能股票 - 具有更大的上涨空间</h3>
+    <p>英伟达公司的盈利持续强劲，这归功于对其Blackwell芯片的需求、不断扩大的人工智能合作伙伴关系以及增加的数据中心投资。</p>
+    <a href="https://www.nasdaq.com/articles/3-ai-stocks-outpacing-nvidia-2026-more-upside-ahead" target="_blank">阅读原文</a>
   </div>
- </div>
+</div>
 
- <div class="news-card">
+<div class="news-card">
   <div class="lang-en">
-   <h3>Can Tesla Stock's $1.3T Valuation Withstand China's Humanoid Surge</h3>
-   <p>Analysis on whether Tesla stock's valuation can withstand the humanoid robotics surge in China.</p>
-   <a href="https://www.trefis.com/stock/tsla/articles/591058/can-tesla-stocks-1-3t-valuation-withstand-chinas-humanoid-surge/2026-02-19" target="_blank">Read More</a>
+    <h3>These 3 AI Stocks Will Have Tremendous Momentum in 2026</h3>
+    <p>Nvidia dominates the AI chip market, extending its presence beyond chips into networking, software, and full-rack solutions. Also mentioned are Amazon, Google, and Meta.</p>
+    <a href="https://finance.yahoo.com/news/prediction-3-ai-stocks-tremendous-184100188.html" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>特斯拉1.3万亿美元的估值能否承受住中国人形机器人浪潮？</h3>
-   <p>分析特斯拉股票的估值是否能够承受住中国人形机器人浪潮。</p>
-   <a href="https://www.trefis.com/stock/tsla/articles/591058/can-tesla-stocks-1-3t-valuation-withstand-chinas-humanoid-surge/2026-02-19" target="_blank">阅读原文</a>
+    <h3>这3只人工智能股票将在2026年拥有巨大的势头</h3>
+    <p>英伟达在人工智能芯片市场占据主导地位，将其业务从芯片扩展到网络、软件和全机架解决方案。同时提到了亚马逊、谷歌和 Meta。</p>
+    <a href="https://finance.yahoo.com/news/prediction-3-ai-stocks-tremendous-184100188.html" target="_blank">阅读原文</a>
   </div>
- </div>
+</div>
 
- <div class="news-card">
+<h2>Investment</h2>
+
+<div class="news-card">
   <div class="lang-en">
-   <h3>Should You Buy Apple Stock Before April 30? | The Motley Fool</h3>
-   <p>Analysis looks into whether it's a good investment to purchase apple stock before April 30th.</p>
-   <a href="https://www.fool.com/features/specials/2026/02/23/should-you-buy-apple-stock-before-april-30/" target="_blank">Read More</a>
+    <h3>What to expect from stocks in 2026 | CNN Business</h3>
+    <p>Analysts point to AI as a growth driver for US stocks, while the American consumer remains resilient, especially wealthy households. The health of the labor market and consumer spending will be key.</p>
+    <a href="https://www.cnn.com/2026/01/01/investing/what-to-expect-stock-market-2026" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>您应该在4月30日之前购买苹果股票吗？| The Motley Fool</h3>
-   <p>分析探讨了在4月30日之前购买苹果股票是否是一个好的投资。</p>
-   <a href="https://www.fool.com/features/specials/2026/02/23/should-you-buy-apple-stock-before-april-30/" target="_blank">阅读原文</a>
+    <h3>2026年股市展望 | CNN商业</h3>
+    <p>分析师指出，人工智能是美国股市的增长动力，而美国消费者，尤其是富裕家庭，仍然具有韧性。劳动力市场和消费者支出的健康状况将是关键。</p>
+    <a href="https://www.cnn.com/2026/01/01/investing/what-to-expect-stock-market-2026" target="_blank">阅读原文</a>
   </div>
- </div>
+</div>
 
- <h2>[Finance]</h2>
-
- <div class="news-card">
+<div class="news-card">
   <div class="lang-en">
-   <h3>Tech stocks to drive growth next year - BBC</h3>
-   <p>Martin Baccardax, senior writer at Barron’s, says AI stocks will be a driving force for US markets in 2026. About 10 stocks account for roughly 50% of this year’s S&P 500 gains, and credits them with helping to keep the US economy out of recession.</p>
-   <a href="https://www.bbc.com/reel/video/p0mpphv0/tech-stocks-to-drive-growth-next-year" target="_blank">Read More</a>
+    <h3>Prediction: These 3 Stocks Will Crush the Market in 2026</h3>
+    <p>The stocks that outperform the S&P 500 will be those with key catalysts.</p>
+    <a href="https://finance.yahoo.com/news/prediction-3-stocks-crush-market-180500047.html" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>科技股将推动明年增长 - BBC</h3>
-   <p>巴伦周刊资深作家Martin Baccardax表示，人工智能股票将成为2026年美国市场的主要驱动力。 大约10只股票占据了今年标准普尔500指数涨幅的50%左右，并认为它们帮助美国经济摆脱了衰退。</p>
-   <a href="https://www.bbc.com/reel/video/p0mpphv0/tech-stocks-to-drive-growth-next-year" target="_blank">阅读原文</a>
+    <h3>预测：这3只股票将在2026年跑赢市场</h3>
+    <p>跑赢标准普尔500指数的股票将是那些具有关键催化剂的股票。</p>
+    <a href="https://finance.yahoo.com/news/prediction-3-stocks-crush-market-180500047.html" target="_blank">阅读原文</a>
   </div>
- </div>
+</div>
 
-  <div class="news-card">
+<div class="news-card">
   <div class="lang-en">
-   <h3>Apple wins US F1 TV rights in $750m deal - BBC</h3>
-   <p>Apple has won the rights to broadcast Formula 1 in the United States for the next five years in deal said to be worth about $750m.</p>
-   <a href="https://www.bbc.com/sport/formula1/articles/c9q1ly83ww5o" target="_blank">Read More</a>
+    <h3>Why these 5 tech stocks could dominate the market in 2026</h3>
+    <p>Analyst shares insight on 5 tech stocks believed to lead the market in 2026.</p>
+    <a href="https://finance.yahoo.com/video/why-5-tech-stocks-could-163833815.html" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>苹果公司赢得美国F1电视转播权，价值7.5亿美元 - BBC</h3>
-   <p>苹果公司已经赢得未来五年在美国转播一级方程式赛事的权利，这笔交易价值约为7.5亿美元。</p>
-   <a href="https://www.bbc.com/sport/formula1/articles/c9q1ly83ww5o" target="_blank">阅读原文</a>
+    <h3>为什么这5只科技股可能在2026年主导市场</h3>
+    <p>分析师分享了他认为将在2026年引领市场的5只科技股的见解。</p>
+    <a href="https://finance.yahoo.com/video/why-5-tech-stocks-could-163833815.html" target="_blank">阅读原文</a>
   </div>
- </div>
+</div>
 
- <h2>[AI]</h2>
- <div class="news-card">
+<div class="news-card">
   <div class="lang-en">
-   <h3>The world has a new EV king. It's not Tesla | CNN Business</h3>
-   <p>BYD beat Tesla to become world’s largest seller of electric vehicles. Competition remains stiff with 150 car brands and more than 50 EV makers</p>
-   <a href="https://www.cnn.com/2026/01/02/business/tesla-byd-ev" target="_blank">Read More</a>
+    <h3>These 3 Sectors Are Crushing Tech in 2026. Time to Invest?</h3>
+    <p>So far in 2026, energy, materials, and industrials stocks are outperforming tech.</p>
+    <a href="https://finance.yahoo.com/news/3-sectors-crushing-tech-2026-163500903.html" target="_blank">Read More</a>
   </div>
   <div class="lang-zh">
-   <h3>世界有了一个新的电动汽车之王。 不是特斯拉 | CNN 商业</h3>
-   <p>比亚迪击败特斯拉成为世界上最大的电动汽车销售商。 竞争仍然激烈，有150个汽车品牌和50多个电动汽车制造商</p>
-   <a href="https://www.cnn.com/2026/01/02/business/tesla-byd-ev" target="_blank">阅读原文</a>
+    <h3>这3个行业在2026年碾压科技行业。是时候投资了吗？</h3>
+    <p>到目前为止，在2026年，能源、材料和工业股的表现优于科技股。</p>
+    <a href="https://finance.yahoo.com/news/3-sectors-crushing-tech-2026-163500903.html" target="_blank">阅读原文</a>
   </div>
- </div></main>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Wall St Week Ahead Nvidia, software reports pose next tests for AI ...</h3>
+    <p>Wall Street will focus on tech-sector quarterly reports, including software companies concerned about AI disruption. A market rotation into energy, industrials and consumer staples is noted.</p>
+    <a href="https://www.reuters.com/business/wall-st-week-ahead-nvidia-software-reports-pose-next-tests-ai-sensitive-stock-2026-02-20/" target="_blank">Read More</a>
+  </div>
+  <div class="lang-zh">
+    <h3>华尔街本周展望：英伟达、软件报告对人工智能构成下一次考验</h3>
+    <p>华尔街将关注科技行业的季度报告，包括担心人工智能颠覆的软件公司。值得注意的是，市场轮动到了能源、工业和消费必需品等领域。</p>
+    <a href="https://www.reuters.com/business/wall-st-week-ahead-nvidia-software-reports-pose-next-tests-ai-sensitive-stock-2026-02-20/" target="_blank">阅读原文</a>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Tech stocks to drive growth next year - BBC</h3>
+    <p>AI stocks will be a driving force for US markets in 2026 and are credited with helping to keep the US economy out of recession.</p>
+    <a href="https://www.bbc.com/reel/video/p0mpphv0/tech-stocks-to-drive-growth-next-year" target="_blank">Read More</a>
+  </div>
+  <div class="lang-zh">
+    <h3>科技股将推动明年的增长 - BBC</h3>
+    <p>人工智能股票将成为2026年美国市场的一支驱动力量，并被认为是帮助美国经济摆脱衰退的原因。</p>
+    <a href="https://www.bbc.com/reel/video/p0mpphv0/tech-stocks-to-drive-growth-next-year" target="_blank">阅读原文</a>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>US stock market ends 2025 on a high note after volatile year - BBC</h3>
+    <p>US stock investors are heading into 2026 on a high note with expectations for lower borrowing costs which could boost corporate earning. Analysts say 2026 should be another year of record setting for stocks.</p>
+    <a href="https://www.bbc.com/news/articles/clyd8r1xgjko" target="_blank">Read More</a>
+  </div>
+  <div class="lang-zh">
+    <h3>美国股市在动荡的一年后以高调结束2025年 - BBC</h3>
+    <p>美国股市投资者以乐观的心情进入2026年，预计借贷成本将降低，这可能会提振公司盈利。分析师表示，2026年应该是股市创纪录的又一年。</p>
+    <a href="https://www.bbc.com/news/articles/clyd8r1xgjko" target="_blank">阅读原文</a>
+  </div>
+</div>
+
+<h2>Finance</h2>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Markets' 2026 watch list: Fed succession, political risk and AI of course</h3>
+    <p>Analysts forsee a new Federal Reserve chair, mid term elections and diverging monetary policies are among key drivers for the market alongside an artificial intelligence boom that has raised concerns about a tech share bubble.</p>
+    <a href="https://www.reuters.com/business/global-markets-outlook-graphic-2026-01-06/" target="_blank">Read More</a>
+  </div>
+  <div class="lang-zh">
+     <h3>2026年市场关注列表：美联储换届、政治风险，当然还有人工智能</h3>
+     <p>分析师预计，除了引发对科技股泡沫担忧的人工智能繁荣之外，新任美联储主席、中期选举和货币政策的分歧是市场的主要驱动力。</p>
+    <a href="https://www.reuters.com/business/global-markets-outlook-graphic-2026-01-06/" target="_blank">阅读原文</a>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>How Nvidia became the first $5 trillion company, in 4 charts - CNN</h3>
+    <p>Nvidia became the first company to briefly surpass a $5 trillion market cap thanks to insatiable demand for their AI chips. The company expects to hit record sales in 2026.</p>
+    <a href="https://www.cnn.com/2026/02/07/business/nvidia-trillion-valuation-ai-chips-vis" target="_blank">Read More</a>
+  </div>
+  <div class="lang-zh">
+    <h3>英伟达如何通过4张图表成为首家市值5万亿美元的公司 - CNN</h3>
+    <p>由于全球公司对其AI芯片的巨大需求，英伟达成为第一家市值短暂超过5万亿美元的公司。该公司预计将在2026年创下销售纪录。</p>
+    <a href="https://www.cnn.com/2026/02/07/business/nvidia-trillion-valuation-ai-chips-vis" target="_blank">阅读原文</a>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Nvidia beats Apple and Microsoft to become the world's first $4 ...</h3>
+    <p>Nvidia briefly hit $4 trillion in market value to become the first company to hit that milestone.</p>
+    <a href="https://www.cnn.com/2025/07/09/investing/nvidia-is-the-first-usd4-trillion-company" target="_blank">Read More</a>
+  </div>
+  <div class="lang-zh">
+    <h3>英伟达击败苹果和微软，成为世界首家市值4万亿美元的公司...</h3>
+    <p>英伟达市值短暂达到4万亿美元，成为第一家达到这一里程碑的公司。</p>
+    <a href="https://www.cnn.com/2025/07/09/investing/nvidia-is-the-first-usd4-trillion-company" target="_blank">阅读原文</a>
+  </div>
+</div></main>
     </div>
-
-    <div id="chat-bar">
-        <div class="chat-box">
-            <input type="text" id="chat-input" placeholder="Query Gemini (Official)... / 咨询 AI...">
-            <button id="chat-btn" onclick="sendToAI()">Go</button>
-        </div>
-    </div>
-
     <script>
         function sendToAI() {
-            const q = document.getElementById('chat-input').value;
+            const q = document.getElementById('chat-input')?.value;
             if(q) window.open("https://www.google.com/search?q=" + encodeURIComponent(q), '_blank');
         }
     </script>
