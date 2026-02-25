@@ -29,7 +29,9 @@ jobs:
 
       - name: Run AI Agent
         run: node index.js # 运行你的抓取脚本
-
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"

@@ -1,41 +1,70 @@
+const axios = require('axios');
 const fs = require('fs');
 
+const TAVILY_KEY = process.env.TAVILY_API_KEY;
+const DEEPSEEK_KEY = process.env.DEEPSEEK_API_KEY;
+
+async function fetchNews() {
+    console.log("正在搜索最新的 AI 资讯...");
+    const response = await axios.post('https://api.tavily.com/search', {
+        api_key: TAVILY_KEY,
+        query: "latest AI and technology news today 2026",
+        search_depth: "advanced",
+        max_results: 5
+    });
+    return response.data.results;
+}
+
+async function summarizeNews(newsArray) {
+    console.log("AI 正在深度总结...");
+    const prompt = `你是一个科技主编，请根据以下新闻素材，总结成一份简报。
+    要求：1. 使用中文；2. 语气专业且幽默；3. 每个条目包含标题、精简总结、原文链接。
+    素材如下：${JSON.stringify(newsArray)}`;
+
+    const response = await axios.post('https://api.deepseek.com/v1/chat/completions', {
+        model: "deepseek-chat",
+        messages: [{ role: "user", content: prompt }]
+    }, {
+        headers: { 'Authorization': `Bearer ${DEEPSEEK_KEY}` }
+    });
+    return response.data.choices[0].message.content;
+}
+
 async function main() {
-  console.log("AI Agent 开始工作...");
-  
-  // 这里未来会替换成真正的 AI 搜索 API 调用
-  const news = [
-    { title: "DeepSeek R1 发布：开源大模型新标杆", link: "https://example.com/1" },
-    { title: "OpenAI 发布 Sora 视频生成模型更新", link: "https://example.com/2" }
-  ];
+    try {
+        const rawNews = await fetchNews();
+        const aiSummary = await summarizeNews(rawNews);
 
-  let htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>AI 科技每日精选</title>
-      <style>
-        body { font-family: sans-serif; padding: 40px; line-height: 1.6; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #eee; }
-        .news-item { margin-bottom: 20px; }
-      </style>
-    </head>
-    <body>
-      <h1>今日 AI 科技精选</h1>
-      ${news.map(item => `
-        <div class="news-item">
-          <h3>${item.title}</h3>
-          <a href="${item.link}">阅读原文</a>
-        </div>
-      `).join('')}
-      <p style="color: gray;">更新时间: ${new Date().toLocaleString()}</p>
-    </body>
-    </html>
-  `;
+        const htmlContent = `
+        <!DOCTYPE html>
+        <html lang="zh-CN">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>AIClaw | 每日科技精选</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+            <style>
+                body { max-width: 800px; margin: 40px auto; padding: 20px; }
+                .update-time { font-size: 0.8em; color: #888; }
+                article { background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 5px solid #007bff; }
+            </style>
+        </head>
+        <body>
+            header><h1>🚀 AIClaw 科技每日速报</h1></header>
+            <p class="update-time">最后更新：${new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}</p>
+            <main>
+                <article>${aiSummary.replace(/\n/g, '<br>')}</article>
+            </main>
+            <footer><p>© 2026 Powered by OpenClaw Agent</p></footer>
+        </body>
+        </html>`;
 
-  fs.writeFileSync('index.html', htmlContent);
-  console.log("网页已生成！");
+        fs.writeFileSync('index.html', htmlContent);
+        console.log("✨ 真正的新闻网页已生成！");
+    } catch (error) {
+        console.error("执行失败:", error.message);
+        process.exit(1);
+    }
 }
 
 main();
