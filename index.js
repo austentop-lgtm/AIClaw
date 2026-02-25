@@ -47,7 +47,7 @@ async function main() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIClaw | 巨头情报局</title>
+    <title>YLH Daily Updated | 巨头情报局</title>
     <style>
         :root {
             --bg: #0f172a;
