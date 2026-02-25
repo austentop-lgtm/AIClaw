@@ -10,107 +10,111 @@ async function main() {
     try {
         if (!KEYS.TAVILY || !KEYS.OR) throw new Error("Missing API Keys");
 
-        console.log("📡 正在检索 BigTech (Tesla, NVIDIA, Apple, Google) 最新动态...");
+        console.log("📡 正在采集腾讯、小米、宁德时代等公司深度行情...");
         
-        // 扩展搜索关键词，覆盖你指定的大厂
+        // 专门针对这五家公司搜集影响股价的深度信息
         const searchRes = await axios.post('https://api.tavily.com/search', {
             api_key: KEYS.TAVILY,
-            query: "latest news today on Tesla, NVIDIA, Apple, Google, and AI breakthroughs 2026",
+            query: "stock analysis 2026: Tencent (0700), Xiaomi (1810), HSBC (0005), CATL, CNOOC earnings and market trend",
             search_depth: "advanced",
-            max_results: 8
+            max_results: 15
         });
 
-        console.log("🧠 AI 正在打磨科技深报...");
+        console.log("🧠 AI 正在生成双板块投资周报...");
         const aiRes = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
             model: "google/gemini-2.0-flash-001",
             messages: [{
                 role: "user",
-                content: `你是一个高端科技杂志主编。请根据以下素材写一份中文深度简报。
+                content: `你是一个专业的证券分析师。请根据素材完成以下两个任务：
                 素材：${JSON.stringify(searchRes.data.results)}
+                
+                任务 1 (资讯流)：总结 15 条今日最重要的科技/财经新闻。
+                任务 2 (投资研报)：分别针对 腾讯、小米、汇丰、宁德时代、中国海洋石油 这 5 家公司，给出：【最新公司消息】【走势回顾】、【核心驱动点】、【投资评级建议】。
+                
                 要求：
-                1. 必须涵盖特斯拉、英伟达、苹果、谷歌、华为、宁德时代、汇丰控股、腾讯等巨头的最新动向。
-                2. 使用 HTML 结构：每条新闻用 <div class="card"> 包装，标题用 <h3>，正文用 <p>，链接用 <a>。
-                3. 语气要客观、犀利、有前瞻性。
-                4. 不要包含任何 markdown 代码块符号。`
+                1. 任务 1 请用 <div class="news-list"> 包装。
+                2. 任务 2 请用 <div class="stock-analysis"> 包装。
+                3. 使用 HTML 格式，不要 markdown。`
             }]
         }, {
             headers: { Authorization: `Bearer ${KEYS.OR}` },
-            timeout: 40000 
+            timeout: 50000 
         });
 
-        const content = aiRes.data.choices[0].message.content.replace(/```html|```/g, '').trim();
+        const rawContent = aiRes.data.choices[0].message.content.replace(/```html|```/g, '').trim();
 
-        // 这里的 HTML 加入了精心设计的 CSS 样式
+        // 核心代码：双页签 HTML 结构
         const html = `
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YLH Daily Updated | 巨头情报局</title>
+    <title>YLH AIClaw Alpha | 投资决策看板</title>
     <style>
-        :root {
-            --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent: #38bdf8;
-            --text: #f1f5f9;
-        }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { 
-            text-align: center; 
-            padding: 40px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 30px;
-        }
-        h1 { font-size: 2.5rem; margin: 0; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .meta { color: var(--accent); font-size: 0.9rem; margin-top: 10px; }
-        .card { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(10px);
-            padding: 25px; 
-            border-radius: 16px; 
-            margin-bottom: 20px; 
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        h3 { margin-top: 0; color: var(--accent); font-size: 1.4rem; }
-        p { color: #cbd5e1; font-size: 1.05rem; }
-        a { color: var(--accent); text-decoration: none; font-size: 0.9rem; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-top: 10px; transition: 0.3s; }
-        a:hover { background: var(--accent); color: var(--bg); }
-        footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.8rem; }
+        :root { --bg: #0a0e17; --card: #151c2c; --accent: #3b82f6; --text: #e2e8f0; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 0; }
+        .header { background: #111827; padding: 20px; text-align: center; border-bottom: 1px solid #1f2937; }
+        h1 { margin: 0; font-size: 1.5rem; color: #fff; }
+        
+        /* 页签样式 */
+        .tabs { display: flex; justify-content: center; background: #111827; border-bottom: 1px solid #1f2937; }
+        .tab-btn { padding: 15px 30px; cursor: pointer; border: none; background: none; color: #94a3b8; font-weight: bold; transition: 0.3s; }
+        .tab-btn.active { color: var(--accent); border-bottom: 3px solid var(--accent); }
+        
+        .content-container { max-width: 850px; margin: 20px auto; padding: 0 15px; }
+        .tab-content { display: none; animation: fadeIn 0.4s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #1f2937; }
+        h3 { color: var(--accent); margin-top: 0; }
+        p { color: #94a3b8; line-height: 1.6; }
+        footer { text-align: center; padding: 30px; color: #4b5563; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>YLH daily AI news</h1>
-            <div class="meta">巨头情报局 · 实时扫描中</div>
-            <div style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Update: ${new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'})}</div>
-        </header>
-        <main>${content}</main>
-        <footer>
-            <p>© 2026 AIClaw Agent | Powered by Gemini 2.0 & Tavily</p>
-        </footer>
+    <div class="header">
+        <h1>🚀 AIClaw Alpha 投资决策看板</h1>
+        <div style="font-size:0.8rem; color:#64748b; margin-top:5px;">更新于: ${new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'})}</div>
     </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'news')">📡 每日资讯</button>
+        <button class="tab-btn" onclick="openTab(event, 'analysis')">📈 深度分析 (个股)</button>
+    </div>
+
+    <div class="content-container">
+        <div id="news" class="tab-content active">
+            ${rawContent.includes('news-list') ? rawContent : '<p>正在加载资讯流...</p>'}
+        </div>
+
+        <div id="analysis" class="tab-content">
+            ${rawContent.includes('stock-analysis') ? rawContent : '<p>个股研报正在生成中...</p>'}
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+    <footer>© 2026 AIClaw Finance Intelligence | 免责声明：AI 总结不构成投资建议</footer>
 </body>
 </html>`;
 
         fs.writeFileSync('index.html', html);
-        console.log("🚀 深度美化版网页已生成！");
+        console.log("🎉 双页签投资看板已生成！");
 
     } catch (error) {
-        console.error("💥 Error:", error.message);
+        console.error("❌ 错误:", error.message);
         process.exit(1);
     }
 }
-
 main();
