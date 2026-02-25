@@ -3,9 +3,25 @@ const fs = require('fs');
 
 const KEYS = {
     TAVILY: process.env.TAVILY_API_KEY?.trim(),
-    OR: process.env.OPENROUTER_API_KEY?.trim()
+    OR: process.env.OPENROUTER_API_KEY?.trim(),
+    WECHAT: process.env.WECHAT_SENDKEY?.trim() // 读取微信密钥
 };
-
+/ 新增微信推送函数
+async function pushToWechat(title, content) {
+    if (!KEYS.WECHAT) {
+        console.log("⚠️ 未配置 WECHAT_SENDKEY，跳过推送。");
+        return;
+    }
+    try {
+        await axios.post(`https://sctapi.ftqq.com/${KEYS.WECHAT}.send`, {
+            title: title,
+            desp: content
+        });
+        console.log("📲 微信推送成功！");
+    } catch (e) {
+        console.error("❌ 微信推送失败:", e.message);
+    }
+}
 async function main() {
     try {
         if (!KEYS.TAVILY || !KEYS.OR) throw new Error("Missing API Keys");
@@ -113,6 +129,11 @@ async function main() {
         fs.writeFileSync('index.html', html);
         console.log("🎉 Themed Bilingual Report Generated!");
 
+        // --- 核心推送逻辑 ---
+        const pushTitle = `今日财经/光伏情报已更新`;
+        const pushBody = `您关注的资产（特斯拉、腾讯、光伏等）动态已生成。请点击查看详情。`;
+        
+        await pushToWechat(pushTitle, pushBody);
     } catch (error) {
         console.error("❌ Error:", error.message);
         process.exit(1);
