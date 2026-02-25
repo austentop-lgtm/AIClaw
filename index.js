@@ -16,18 +16,14 @@ async function fetchNews() {
 }
 
 async function summarizeNews(newsArray) {
-    console.log("AI 正在深度总结...");
-    const prompt = `你是一个科技主编，请根据以下新闻素材，总结成一份简报。
-    要求：1. 使用中文；2. 语气专业且幽默；3. 每个条目包含标题、精简总结、原文链接。
-    素材如下：${JSON.stringify(newsArray)}`;
-
-    const response = await axios.post('https://api.deepseek.com/v1/chat/completions', {
-        model: "deepseek-chat",
-        messages: [{ role: "user", content: prompt }]
-    }, {
-        headers: { 'Authorization': `Bearer ${DEEPSEEK_KEY}` }
+    console.log("正在使用 Gemini 进行总结...");
+    const prompt = `你是一个科技主编...素材如下：${JSON.stringify(newsArray)}`;
+    
+    // 替换为 Gemini 的 API 格式
+    const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+        contents: [{ parts: [{ text: prompt }] }]
     });
-    return response.data.choices[0].message.content;
+    return response.data.candidates[0].content.parts[0].text;
 }
 
 async function main() {
