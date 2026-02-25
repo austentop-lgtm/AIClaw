@@ -62,8 +62,13 @@ async function main() {
         fs.writeFileSync('index.html', htmlContent);
         console.log("✨ 真正的新闻网页已生成！");
     } catch (error) {
-        console.error("执行失败:", error.message);
-        process.exit(1);
+    if (error.response) {
+        // 这会打印出到底是哪个接口报的 402
+        console.error(`API 报错 [${error.config.url}]:`, error.response.status, error.response.data);
+    } else {
+        console.error("网络或其他错误:", error.message);
+    }
+    process.exit(1);
     }
 }
 
