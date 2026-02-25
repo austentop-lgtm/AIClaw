@@ -17,27 +17,31 @@ async function fetchNews() {
 }
 
 async function summarizeNews(newsArray) {
-    console.log("正在调用 Gemini 1.5 Flash (v1beta) 生成简报...");
-    const prompt = `你是一个科技主编，请根据以下新闻素材，总结成一份简报。
-    要求：1. 使用中文；2. 语气专业且幽默；3. 每个条目包含标题、精简总结、原文链接。
-    素材如下：${JSON.stringify(newsArray)}`;
+    const prompt = `你是一个科技主编，请根据以下新闻素材，总结成一份简报。使用中文。素材如下：${JSON.stringify(newsArray)}`;
+    
+    // 准备三个可能的方案
+    const configs = [
+        { url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, name: "v1beta-flash" },
+        { url: `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_KEY}`, name: "v1-pro" },
+        { url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_KEY}`, name: "v1beta-pro" }
+    ];
 
-    // 终极 URL 格式：使用 v1beta 和最基础的 gemini-1.5-flash 名称
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
-
-    const response = await axios.post(url, {
-        contents: [{
-            parts: [{ text: prompt }]
-        }]
-    }, {
-        headers: { 'Content-Type': 'application/json' }
-    });
-
-    if (response.data && response.data.candidates) {
-        return response.data.candidates[0].content.parts[0].text;
-    } else {
-        throw new Error("Gemini 返回数据解析失败，请检查 API Key");
+    for (const config of configs) {
+        try {
+            console.log(`正在尝试方案: ${config.name}...`);
+            const response = await axios.post(config.url, {
+                contents: [{ parts: [{ text: prompt }] }]
+            });
+            if (response.data && response.data.candidates) {
+                console.log(`✅ ${config.name} 调用成功！`);
+                return response.data.candidates[0].content.parts[0].text;
+            }
+        } catch (err) {
+            console.warn(`❌ ${config.name} 失败: ${err.response ? err.response.status : err.message}`);
+            // 继续下一个尝试
+        }
     }
+    throw new Error("所有 Gemini 模型路径都不可用，请去 Google AI Studio 重新创建一个 API Key。");
 }
 
 async function main() {
