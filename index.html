@@ -1,21 +1,34 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIClaw Alpha | 实时财经智库</title>
+    <title>AIClaw Alpha | Financial Intelligence</title>
     <style>
         :root { --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --text: #f1f5f9; }
         body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; margin: 0; padding: 20px 20px 120px 20px; }
         .container { max-width: 800px; margin: 0 auto; }
-        .header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 30px; }
-        .news-card { background: var(--card); padding: 25px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
-        .news-card h3 { margin: 0 0 15px 0; color: var(--accent); line-height: 1.4; }
-        .news-card p { color: #cbd5e1; font-size: 1rem; line-height: 1.7; }
-        .news-card a { color: var(--accent); text-decoration: none; font-size: 0.9rem; border: 1px solid var(--accent); padding: 6px 15px; border-radius: 6px; display: inline-block; margin-top: 15px; }
         
-        /* 安全对话框：无 API Key 泄露 */
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { margin: 0; font-size: 1.5rem; }
+        
+        /* Language Toggle Switch */
+        .toggle-btn { background: var(--accent); color: #000; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        
+        .news-card { background: var(--card); padding: 25px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .news-card h3 { margin: 0 0 15px 0; color: var(--accent); }
+        .news-card p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
+        .news-card a { color: var(--accent); text-decoration: none; font-size: 0.85rem; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 6px; display: inline-block; margin-top: 10px; }
+        
+        /* Language Display Logic (Default: English) */
+        .lang-zh { display: none; }
+        body.zh-mode .lang-zh { display: block; }
+        body.zh-mode .lang-en { display: none; }
+        body.zh-mode .en-text { display: none; }
+        body.zh-mode .zh-text { display: inline; }
+        .zh-text { display: none; }
+
         #chat-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; padding: 20px; border-top: 2px solid var(--accent); }
         .chat-box { max-width: 800px; margin: 0 auto; display: flex; gap: 10px; }
         #chat-input { flex: 1; padding: 12px; border-radius: 8px; border: none; background: #0f172a; color: #fff; border: 1px solid #334155; }
@@ -25,86 +38,163 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 AIClaw Alpha 财经情报</h1>
-            <div style="color: #64748b; font-size: 0.9rem;">更新于: 2026/2/25 15:44:18</div>
+            <h1>🚀 <span class="en-text">AIClaw Alpha</span><span class="zh-text">AIClaw 财经情报</span></h1>
+            <button class="toggle-btn" onclick="toggleLang()">
+                <span class="en-text">Switch to 中文</span>
+                <span class="zh-text">切换至 English</span>
+            </button>
         </div>
-        <main><h2>2026 年金融市场与科技新闻</h2>
+        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">
+            <span class="en-text">Last Update: </span><span class="zh-text">最后更新：</span>
+            2026/2/25 15:51:01
+        </p>
+        <main id="content-area"><h2>Tesla News</h2>
 
 <div class="news-card">
-    <h3>Tesla, Meta, and Microsoft earnings recap, where investors can look ...</h3>
-    <p>Morning Brief 主播 Julie Hyman 报告了 2026 年 1 月 29 日的最新金融新闻。特斯拉、Meta 和微软公布了盈利报告。投资者关注的重点可能是这些科技巨头的未来增长战略，以及它们在人工智能领域的投入和预期回报，同时还要关注宏观经济因素对这些公司业绩的影响。财报数据和分析将为市场提供对科技行业健康状况以及未来投资方向的重要洞察。</p>
-    <a href="https://www.youtube.com/watch?v=tNU3f0kONtc" target="_blank">阅读原文</a>
+  <div class="lang-en">
+    <h3>Tesla, Meta, and Microsoft Earnings Recap, Where Investors Can Look ...</h3>
+    <p>Morning Brief anchor Julie Hyman reports the latest financial news for January 29, 2026. The report focuses on the earnings of major tech companies like Tesla, Meta, and Microsoft, highlighting key figures and potential insights for investors to consider.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>特斯拉、Meta、微软财报回顾</h3>
+    <p>Morning Brief主播Julie Hyman报道2026年1月29日的最新财经消息，重点关注特斯拉、Meta和微软等大型科技公司的收益情况，并为投资者提供关键见解。</p>
+  </div>
+  <a href="https://www.youtube.com/watch?v=tNU3f0kONtc" target="_blank">Read More / 阅读原文</a>
 </div>
 
 <div class="news-card">
-    <h3>The next 3 phases of the AI cycle for 2026, plus why Trump's Nvidia ...</h3>
-    <p>该文章主要探讨了人工智能在 2026 年的周期性发展阶段，以及政治因素（例如前总统特朗普对英伟达的影响）如何与金融市场交织。读者可以在 Yahoo Finance 上获取最新的财经新闻和数据，并通过其 App 随时随地追踪市场动态。文章强调了人工智能技术发展对金融市场的潜在影响，以及投资者应该关注的关键趋势和政治风险。</p>
-    <a href="https://www.youtube.com/watch?v=Q98NME0l1rU" target="_blank">阅读原文</a>
+  <div class="lang-en">
+    <h3>Tesla, Inc.: Financial Data Forecasts Estimates and Expectations</h3>
+    <p>This article provides a detailed overview of Tesla's financial data, forecasts, estimates, and expectations. It includes a breakdown of net sales, net income, and other key financial metrics for various fiscal periods, offering insights into the company's past performance and future prospects based on analyst predictions.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>特斯拉公司：财务数据预测与预期</h3>
+    <p>本文详细概述了特斯拉的财务数据、预测、估计和预期。 包括对各个财政期间的净销售额、净利润和其他关键财务指标的详细分析，帮助了解公司历史业绩和未来前景。</p>
+  </div>
+  <a href="https://www.marketscreener.com/quote/stock/TESLA-INC-6344549/finances/" target="_blank">Read More / 阅读原文</a>
 </div>
 
 <div class="news-card">
+  <div class="lang-en">
+    <h3>Tesla's 2026 Is STACKED: The MOST Catalysts Ever - YouTube</h3>
+    <p>This YouTube video discusses the potential catalysts for Tesla in 2026. It suggests that the year will be filled with significant events and developments that could impact the company's performance and stock value, presenting a potentially optimistic outlook for Tesla investors.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>特斯拉2026年：催化剂叠加</h3>
+    <p>此YouTube视频讨论了特斯拉在2026年的潜在催化剂， 预示着有很多重要事件和发展，可能会影响公司的业绩和股票价值, 对特斯拉投资者来说，前景乐观。</p>
+  </div>
+  <a href="https://www.youtube.com/watch?v=w-PLZdnZ4j0" target="_blank">Read More / 阅读原文</a>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Tesla Rival Leads 5 China Stocks Near Buy Points Amid Trump ...</h3>
+    <p>This article indicates that Xiaomi, a rival to Tesla, is leading a group of five Chinese stocks that are approaching buy points. The potential for a trade truce between the U.S. under Trump and Beijing is mentioned as a factor influencing these stocks.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>特斯拉竞争对手领涨5支中国股票</h3>
+    <p>本文指出，特斯拉的竞争对手小米领涨了五支接近买入点的中国股票。 特朗普与北京达成贸易休战的可能性被认为是影响这些股票的一个因素。</p>
+  </div>
+  <a href="https://www.investors.com/news/tesla-rival-china-stocks-near-buy-points-trump-trade-truce/" target="_blank">Read More / 阅读原文</a>
+</div>
+
+<h2>Big Tech & AI News</h2>
+
+<div class="news-card">
+  <div class="lang-en">
     <h3>HSBC remains bullish on Big Tech while highlighting challenges ...</h3>
-    <p>汇丰银行维持了对大型科技公司的乐观评级，同时强调了 2026 年人工智能价值链（包括云服务、芯片等）所面临的挑战和机遇。汇丰指出，尽管市场存在不确定性，但科技创新将继续推动增长。投资者应关注人工智能技术在不同领域的应用，以及大型科技公司如何应对市场竞争和监管挑战。报告强调了对人工智能价值链的长期投资潜力，并建议投资者关注该领域的机会。</p>
-    <a href="https://seekingalpha.com/news/4537294-hsbc-remains-bullish-on-big-tech-while-highlighting-challenges-opportunities-in-2026-for-ai-value-chain" target="_blank">阅读原文</a>
+    <p>HSBC maintains a positive outlook on major technology companies, while also pointing out potential challenges and opportunities within the AI value chain in 2026, including cloud computing, semiconductor chips, and related industries. The report likely analyzes factors influencing growth and potential risks.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>汇丰银行仍然看好大型科技公司</h3>
+    <p>汇丰银行对大型科技公司保持乐观态度，同时也指出了2026年人工智能价值链中潜在的挑战和机遇， 例如云计算、半导体芯片和相关产业等。 报告分析影响增长和潜在风险的因素。</p>
+  </div>
+  <a href="https://seekingalpha.com/news/4537294-hsbc-remains-bullish-on-big-tech-while-highlighting-challenges-opportunities-in-2026-for-ai-value-chain" target="_blank">Read More / 阅读原文</a>
 </div>
 
 <div class="news-card">
+    <div class="lang-en">
+        <h3>Alphabet, Apple, and Microsoft Got Kicked Out of the $4 Trillion Club ...</h3>
+        <p>This article discusses how Alphabet, Apple, and Microsoft have fallen from the $4 trillion market cap club, while highlighting Nvidia's potential to join it. It examines factors influencing these tech giants and how capital expenditure spending impacts their future market positions. Nvidia's next-generation chip rollout is a key focus.</p>
+    </div>
+    <div class="lang-zh">
+        <h3>Alphabet、苹果与微软跌出4万亿美元俱乐部</h3>
+        <p>本文讨论了Alphabet、苹果与微软如何跌出4万亿美元市值俱乐部，并强调了英伟达加入其中的潜力。同时检验了影响这些科技巨头以及资本支出如何影响其未来市场地位的因素。 英伟达的下一代芯片发布是关键。</p>
+    </div>
+    <a href="https://www.theglobeandmail.com/investing/markets/stocks/AAPL/pressreleases/394737/alphabet-apple-and-microsoft-got-kicked-out-of-the-4-trillion-club-could-nvidia-be-next/" target="_blank">Read More / 阅读原文</a>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Big Tech earnings: Meta, Apple, Tesla, Microsoft AI spend in ... - CNBC</h3>
+    <p>This CNBC article focuses on the AI spending of Big Tech companies like Meta, Apple, Tesla, and Microsoft, as refelcted in their recent earnings reports. It analyzes capital expenditure forecasts and their effect on earnings and investor sentiment, in addition to new product integration/AI model development.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>大型科技公司财报：Meta、苹果、特斯拉、微软在人工智能上的支出</h3>
+    <p>CNBC的这篇文章重点关注Meta、苹果、特斯拉和微软等大型科技公司的人工智能支出， 以及AI对公司收入和投资者情绪的影响。 还分析了各公司在人工智能模型开发和产品整合情况 。</p>
+  </div>
+  <a href="https://www.cnbc.com/2026/01/27/big-tech-earnings-2026-ai-spend.html" target="_blank">Read More / 阅读原文</a>
+</div>
+
+<div class="news-card">
+  <div class="lang-en">
+    <h3>Largest Companies by Market Cap in 2026 - The Motley Fool</h3>
+    <p>This article lists the largest companies by market capitalization in February 2026. Nvidia, Alphabet, and Apple top the list, and it includes other prominent companies across various sectors with market caps of at least $1 trillion, providing a snapshot of the leading companies in the stock market.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>2026年市值最大的公司 - The Motley Fool</h3>
+    <p>本文列出了截至2026年2月市值最大的公司。英伟达、Alphabet和苹果名列前茅，还包括包括市值至少为1万亿美元的，各个行业的其他知名公司提供了股市领先公司的快照。</p>
+  </div>
+  <a href="https://www.fool.com/research/largest-companies-by-market-cap/" target="_blank">Read More / 阅读原文</a>
+</div>
+
+<h2>HSBC News</h2>
+
+<div class="news-card">
+  <div class="lang-en">
     <h3>HSBC Q1 2026 Outlook: Resilience in a Transforming World</h3>
-    <p>汇丰银行发布的 2026 年第一季度展望报告强调了在全球变革中保持韧性的重要性，并预测人工智能的广泛应用将不仅使科技和公用事业公司受益，还将惠及其他行业的智能应用者。该报告还指出，分析师低估了盈利增长，市场可能过度预期美联储降息。虽然这种环境对风险资产有利，但市场可能会因对人工智能推广速度、债务、通货膨胀和地缘政治不确定性的担忧而出现短期波动。  汇丰银行在 2026 年的主要关注点包括科技创新，以及在不同领域寻找多元化机会。</p>
-    <a href="https://www.about.us.hsbc.com/newsroom/press-releases/hsbc-q1-2026-outlook-resilience-in-a-transforming-world" target="_blank">阅读原文</a>
+    <p>HSBC's Q1 2026 investment outlook emphasizes resilience in a transforming global landscape. The bank anticipates AI adoption benefiting tech, utilities, and innovative companies. While slightly reducing its overweight position on US stocks due to valuation risks, HSBC sees diversification opportunities across sectors and geographies. The outlooks also highlights market volatility concerns stemming from the speed of AI rollout, debt, inflation, and geopolitical factors.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>汇丰银行2026年第一季度展望：转型世界中的韧性</h3>
+    <p>汇丰银行的2026年第一季度投资展望强调了转型中的全球环境的适应性。 汇丰预计人工智能将在技术、公用事业和创新型公司中获益。由于估值风险，汇丰略微降低了对美国股票的超配， 但看到了各个领域和地区的多元化机会。同时也强调人工智能推广速度、债务、通货膨胀和地缘政治带来的市场波动担忧。</p>
+  </div>
+  <a href="https://www.about.us.hsbc.com/newsroom/press-releases/hsbc-q1-2026-outlook-resilience-in-a-transforming-world" target="_blank">Read More / 阅读原文</a>
 </div>
 
 <div class="news-card">
-    <h3>NVIDIA Announces Financial Results for First Quarter Fiscal 2026</h3>
-    <p>英伟达（NVIDIA）发布了截至 2025 年 4 月 27 日的 2026 财年第一季度财务业绩，报告显示营收为 441 亿美元，较上一季度增长 12%，较去年同期增长 69%。这份报告突显了英伟达在人工智能和高性能计算领域的持续增长势头，对投资者来说，这是一个关键的指标，表明英伟达在该领域的领导地位和市场需求的强劲增长。</p>
-    <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2026" target="_blank">阅读原文</a>
-</div>
-
-<div class="news-card">
-    <h3>The 3 Best Magnificent 7 Stocks for 2026 (GOOGL, AAPL, TSLA)</h3>
-    <p>Alphabet (谷歌母公司)、苹果和特斯拉的股票都拥有看涨的催化剂，预示着 2026 年的良好前景。具体而言，文章分析了这三家公司各自的优势和潜在增长点，并预测它们将继续在市场上表现出色。投资者可以从中了解“七巨头”中的佼佼者，以及在人工智能和科技行业快速发展的背景下，应该关注的重要投资机会。</p>
-    <a href="https://finance.yahoo.com/news/3-best-magnificent-7-stocks-201200497.html" target="_blank">阅读原文</a>
-</div>
-
-<div class="news-card">
-    <h3>Tesla's 2026 mission, Navigating Through Competition ... - Gasgoo</h3>
-    <p>特斯拉在 2026 年的任务是应对来自中国汽车制造商的竞争。马斯克提出了家用机器人约 20,000-30,000 美元的价格，并表示该产品最终可能占特斯拉市值的 80%。特斯拉计划在 2026 年开始生产 AI5 芯片，据称性能比目前的 AI4 提高 10 倍，甚至超过英伟达的竞争芯片。然而，并非所有分析师都对 2026 年持乐观态度，并警告称特斯拉的扩张速度可能面临挑战。2025 年，特斯拉在美国的销量低于市场预期，净利润同比下降 40.5%。</p>
-    <a href="https://autonews.gasgoo.com/articles/news/teslas-2026-mission-navigating-through-competition-with-chinese-automakers-2010712617306140673" target="_blank">阅读原文</a>
-</div>
-
-<div class="news-card">
-    <h3>Latest Finance News | Today's Top Headlines - Reuters</h3>
-    <p>路透社提供来自全球的最新金融新闻，是您在线获取国际新闻报道的来源。 该链接提供每日头条新闻和突发新闻，涵盖全球金融市场的各个方面，包括股票、债券、货币、商品和经济数据。投资者和金融专业人士可以通过阅读原文，及时了解影响市场和经济的最新发展。</p>
-    <a href="https://www.reuters.com/business/finance/" target="_blank">阅读原文</a>
-</div>
-
-<div class="news-card">
-    <h3>&lt;Research&gt;CLSA Expects Minimal Impact on CATL (03750.HK ...</h3>
-    <p>里昂证券（CLSA）预计，宁德时代（CATL，03750.HK）受到的影响很小。该链接还包含其他新闻，包括长江基建就巴拿马政府接管港口一事表示反对，并保留采取法律行动的权利；汇丰控股在中午交易后上涨超过3%；汇丰控股设定的2026至2028年有形股本回报率目标为17%；香港政府提高基本和已婚人士免税额，以及其他预算相关的新闻。 其中，汇丰控股的目标值得关注，体现了公司对未来盈利能力的信心。</p>
-    <a href="http://www.aastocks.com/en/stocks/news/aafn-con/NOW.1504668/latest-news/AAFN" target="_blank">阅读原文</a>
-</div>
-
-<div class="news-card">
-    <h3>Tesla Delivers Disappointing News That Could Impact Investor ...</h3>
-    <p>特斯拉发布了令人失望的消息，可能会影响投资者的信心。文章指出，特斯拉的股价被过高地定价为一家人工智能公司，并假设Robotaxi的商业化是理所当然的，但这远非事实。 此外，2025年是特斯拉有史以来最糟糕的一年，其电动汽车销量较2024年下降了8.5%，并且失去了全球电动汽车销售冠军的头衔。 文章强调，特斯拉的未来取决于Robotaxi项目能否成功。 投资者如果阅读原文，可以更深入地了解当前影响特斯拉投资价值的关键因素，并对其股票进行风险评估。</p>
-    <a href="https://www.fool.com/investing/2026/01/23/tesla-delivers-disappointing-news-that-could-impac/" target="_blank">阅读原文</a>
+  <div class="lang-en">
+    <h3>CLSA Expects Minimal Impact on CATL (03750.HK ...</h3>
+    <p>This news lists other recent news regarding HSBC, including their RoTE targets from 2026-2028, Q1 results, dividend declarations and share buyback plans.</p>
+  </div>
+  <div class="lang-zh">
+    <h3>里昂证券预计宁德时代(03750.HK...)影响甚微</h3>
+    <p>本新闻还列出了有关汇丰银行的近期新闻，包括其2026-2028年的 RoTE 目标、第一季度业绩、股息派发公告和股票回购计划。</p>
+  </div>
+  <a href="http://www.aastocks.com/en/stocks/news/aafn-con/NOW.1504668/research-report/AAFN" target="_blank">Read More / 阅读原文</a>
 </div></main>
     </div>
 
     <div id="chat-bar">
         <div class="chat-box">
-            <input type="text" id="chat-input" placeholder="输入问题，一键咨询 Gemini 官网...">
-            <button id="chat-btn" onclick="sendToAI()">咨询 AI</button>
+            <input type="text" id="chat-input" placeholder="Ask Gemini (Official)... / 咨询 Gemini 官网...">
+            <button id="chat-btn" onclick="sendToAI()">Go</button>
         </div>
-        <p style="max-width:800px; margin: 10px auto 0; font-size: 0.75rem; color: #64748b;">提示：点击将携带问题跳转至官网，确保数据与隐私安全。</p>
+        <p style="max-width:800px; margin: 8px auto 0; font-size: 0.7rem; color: #64748b;">
+            <span class="en-text">Privacy Note: Redirects to official AI to protect your keys.</span>
+            <span class="zh-text">隐私说明：将跳转至官方对话，确保您的密钥安全。</span>
+        </p>
     </div>
 
     <script>
+        function toggleLang() {
+            document.body.classList.toggle('zh-mode');
+        }
+
         function sendToAI() {
             const query = document.getElementById('chat-input').value;
             if(!query) return;
-            // 编码问题并跳转，不会暴露任何 Key
-            const target = "https://www.google.com/search?q=" + encodeURIComponent(query + " 深度分析");
+            const target = "https://www.google.com/search?q=" + encodeURIComponent(query);
             window.open(target, '_blank');
         }
     </script>
