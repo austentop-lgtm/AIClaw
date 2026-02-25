@@ -4,118 +4,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YLH Daily Updated | 巨头情报局</title>
+    <title>YLH AIClaw Alpha | 投资决策看板</title>
     <style>
-        :root {
-            --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent: #38bdf8;
-            --text: #f1f5f9;
-        }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { 
-            text-align: center; 
-            padding: 40px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 30px;
-        }
-        h1 { font-size: 2.5rem; margin: 0; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .meta { color: var(--accent); font-size: 0.9rem; margin-top: 10px; }
-        .card { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(10px);
-            padding: 25px; 
-            border-radius: 16px; 
-            margin-bottom: 20px; 
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        h3 { margin-top: 0; color: var(--accent); font-size: 1.4rem; }
-        p { color: #cbd5e1; font-size: 1.05rem; }
-        a { color: var(--accent); text-decoration: none; font-size: 0.9rem; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-top: 10px; transition: 0.3s; }
-        a:hover { background: var(--accent); color: var(--bg); }
-        footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.8rem; }
+        :root { --bg: #0a0e17; --card: #151c2c; --accent: #3b82f6; --text: #e2e8f0; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 0; }
+        .header { background: #111827; padding: 20px; text-align: center; border-bottom: 1px solid #1f2937; }
+        h1 { margin: 0; font-size: 1.5rem; color: #fff; }
+        
+        /* 页签样式 */
+        .tabs { display: flex; justify-content: center; background: #111827; border-bottom: 1px solid #1f2937; }
+        .tab-btn { padding: 15px 30px; cursor: pointer; border: none; background: none; color: #94a3b8; font-weight: bold; transition: 0.3s; }
+        .tab-btn.active { color: var(--accent); border-bottom: 3px solid var(--accent); }
+        
+        .content-container { max-width: 850px; margin: 20px auto; padding: 0 15px; }
+        .tab-content { display: none; animation: fadeIn 0.4s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #1f2937; }
+        h3 { color: var(--accent); margin-top: 0; }
+        p { color: #94a3b8; line-height: 1.6; }
+        footer { text-align: center; padding: 30px; color: #4b5563; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>YLH daily AI news</h1>
-            <div class="meta">巨头情报局 · 实时扫描中</div>
-            <div style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Update: 2026/2/25 15:25:29</div>
-        </header>
-        <main><!DOCTYPE html>
+    <div class="header">
+        <h1>🚀 AIClaw Alpha 投资决策看板</h1>
+        <div style="font-size:0.8rem; color:#64748b; margin-top:5px;">更新于: 2026/2/25 15:33:38</div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'news')">📡 每日资讯</button>
+        <button class="tab-btn" onclick="openTab(event, 'analysis')">📈 深度分析 (个股)</button>
+    </div>
+
+    <div class="content-container">
+        <div id="news" class="tab-content active">
+            <!DOCTYPE html>
 <html>
 <head>
-<title>AI 前沿观察：2026 技术巨头动态深度简报</title>
+<title>证券分析报告</title>
 <style>
-.card {
-    border: 1px solid #ccc;
-    padding: 10px;
+body {
+    font-family: sans-serif;
+}
+.news-list {
+    margin-bottom: 20px;
+}
+.news-list h2 {
+    font-size: 1.2em;
     margin-bottom: 10px;
 }
-h3 {
-    margin-top: 0;
+.news-list ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+.stock-analysis h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.stock-analysis h3 {
+    font-size: 1em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.stock-analysis p {
+    margin-bottom: 10px;
+}
+.stock-analysis .company {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
 }
 </style>
 </head>
 <body>
 
-<h1>AI 前沿观察：2026 技术巨头动态深度简报</h1>
-
-<p><b>编者按：</b>2026 年伊始，AI 领域竞争白热化。各大科技巨头纷纷亮剑，或在硬件上寻求突破，或在应用上拓展边界。以下是本期对关键企业动向的深度解读，揭示未来科技竞争的格局变迁。</p>
-
-<div class="card">
-    <h3>英伟达：AI 硬件霸主地位进一步巩固</h3>
-    <p>英伟达正式发布 “Vera Rubin” AI 平台，搭载 H300 GPU 和定制 AI 芯片代工厂，旨在应对万亿参数模型的需求。与 Alpamayo 合作，利用 DRIVE Orin 和 Thor 平台加速自动驾驶车辆开发，通过数字孪生技术进行虚拟测试。英伟达的市场估值一度突破 5 万亿美元，进一步巩固了其在 AI 芯片领域的领导地位。这意味着，算力依旧是 AI 竞争的核心，英伟达正在围绕这一核心构建强大的生态壁垒。<a href="https://www.crescendo.ai/news/latest-ai-news-and-updates">来源</a> , <a href="https://radicaldatascience.wordpress.com/2026/02/24/ai-news-briefs-bulletin-board-for-february-2026/">来源</a></p>
+<div class="news-list">
+  <h2>今日科技/财经新闻</h2>
+  <ul>
+    <li>中国数字服务出口激增，阿里巴巴、腾讯引领全球扩张。</li>
+    <li>ByteDance 加入阿里巴巴、腾讯的行列，竞相提供免费服务以获取 AI 应用用户。</li>
+    <li>中国科技股在 2026 年获得动力，中美贸易缓和稳定了关税，并为 AI、EV 和芯片的进步打开了窗口。</li>
+    <li>小米电动车交付量超过 60 万辆。</li>
+    <li>中国年轻观众越来越喜欢以年长参赛者为主角的约会节目。</li>
+    <li>习近平考察北京创新园，强调中国对高水平技术发展的关注。</li>
+    <li>蔚来汽车因“屏幕黑屏”问题召回 24.6 万辆电动汽车。</li>
+    <li>寒武纪赢得腾讯健康“AI赋能未来奖”。</li>
+    <li>小米开始接受升级版 SU7 轿车的预订，强调安全功能。</li>
+    <li>和赛计划将激光雷达产能翻倍至 400 万台。</li>
+    <li>小米股价上涨至 36.56 港元，涨幅达 3.39%。</li>
+    <li>分析师普遍预计小米 (1810) 股票的12个月平均目标价是 56.11 港元。</li>
+    <li>小米下一份收益报告将于 2026 年 3 月 24 日发布。</li>
+    <li>腾讯在人工智能应用领域面临激烈的竞争。</li>
+    <li>小米SU7电动轿车将于2026年4月上市。</li>
+  </ul>
 </div>
 
-<div class="card">
-    <h3>特斯拉：Optimus 机器人能否重塑估值体系？</h3>
-    <p>特斯拉大幅更新 Optimus 机器人和 AI 系统，提升了机器人的灵活性、感知和制造自动化能力。特斯拉 Fremont 工厂将转型为 Optimus 制造中心，表明其战略重心正从电动汽车转向 AI 驱动的自动化服务。尽管特斯拉的市值为 1.6 万亿美元，P/E 倍数高达 202，但投资者正押注 Optimus 机器人能在全球范围内成功部署。问题在于，特斯拉能否将 AI 领域的技术优势转化为机器人领域的商业价值，并以此支撑其高企的估值？<a href="https://www.theglobeandmail.com/investing/markets/stocks/TSLA/pressreleases/379807/teslas-optimus-robot-could-reach-human-level-proficiency-in-2026-time-to-buy/">来源</a></p>
-</div>
+<div class="stock-analysis">
+  <h2>投资研报</h2>
 
-<div class="card">
-    <h3>AI 模型恶性竞争：暗流涌动</h3>
-    <p>Anthropic 指控 DeepSeek, Moonshot AI, 和 MiniMax 通过 24,000 个虚假账户生成约 1600 万个 Claude 互动，试图复制其 agentic 推理、工具使用和编码能力。 这揭示了 AI 模型开发领域日益白热化的竞争，包括通过可疑手段获取竞争对手数据的行为。未来监管介入的可能性正在增加。<a href="https://radicaldatascience.wordpress.com/2026/02/24/ai-news-briefs-bulletin-board-for-february-2026/">来源</a></p>
-</div>
+  <div class="company">
+    <h3>腾讯 (0700.HK)</h3>
+    <h4>最新公司消息</h4>
+    <p>腾讯获得了“AI赋能未来奖”，中国数字服务出口业务正在蓬勃发展，腾讯是该领域的领头羊之一。但是，腾讯也在积极参与人工智能应用领域的激烈竞争中。</p>
+    <h4>走势回顾</h4>
+    <p>2026年2月13日收盘价为532.00港元，下跌0.65%。过去一年上涨了19.77%。</p>
+    <h4>核心驱动点</h4>
+    <p>中美贸易关系缓和以及在人工智能（AI）领域的进步是关键驱动因素。数字服务出口的增长也推动了收入的增长。</p>
+    <h4>投资评级建议</h4>
+    <p>目前分析师普遍评级为“强烈买入”，平均12个月目标价为752.70港元，存在44.19%的上涨空间。但需注意人工智能领域的激烈竞争。</p>
+  </div>
 
-<div class="card">
-    <h3>AI 芯片初创公司：弯道超车的机会？</h3>
-    <p>AI 芯片初创公司 Taalas 推出 HC1 芯片，专为运行单个 AI 模型而设计，输出速度比现有硬件快 100 倍。 这反映了 AI 芯片领域的创新活力，一些初创公司正试图通过定制化解决方案在特定应用场景下实现性能突破，从而挑战英伟达等巨头的垄断地位。 然而，能否在市场规模、生态系统等方面与巨头抗衡，仍是这些初创公司面临的巨大挑战。<a href="https://radicaldatascience.wordpress.com/2026/02/24/ai-news-briefs-bulletin-board-for-february-2026/">来源</a></p>
-</div>
+  <div class="company">
+    <h3>小米 (1810.HK)</h3>
+    <h4>最新公司消息</h4>
+    <p>小米电动汽车（SU7）交付量已超过60万辆。公司开始接受升级版 SU7 轿车的预订，并且在开发AI，芯片和提高可持续性上进行投资。下一份收益报告将于 2026 年 3 月 24 日发布。</p>
+    <h4>走势回顾</h4>
+    <p>2026年2月13日收盘价为36.84港元，上涨0.88%。过去一年下跌了16.46%。</p>
+    <h4>核心驱动点</h4>
+    <p>智能生态系统的扩张、高档产品的推广以及全球零售业务的拓展是主要的驱动因素。电动汽车业务的进展也是一个关键因素。</p>
+    <h4>投资评级建议</h4>
+    <p>分析师普遍建议“买入”，平均12个月目标价为56.11港元，比当前价格有显著的上涨空间。但是需要注意的是，近期的分析师评级有所下调，请谨慎投资。</p>
+  </div>
 
-<div class="card">
-    <h3>未来展望：AGI 的伦理与发展</h3>
-    <p>Nick Bostrom 的文章指出，开发超级智能 (AGI) 类似于进行有风险的手术以应对致命疾病。 尽管 AGI 可能带来生存风险，但草率的暂停可能弊大于利。 最优策略是快速发展 AGI 能力，然后在全面发展前短暂暂停。 这反映了 AI 伦理和安全问题日益受到重视，如何在发展 AI 的同时控制风险，是未来 AI 领域需要重点关注的问题。<a href="https://radicaldatascience.wordpress.com/2026/02/24/ai-news-briefs-bulletin-board-for-february-2026/">来源</a></p>
-</div>
+    <div class="company">
+    <h3>汇丰 (HSBC)</h3>
+    <p>由于信息不足，无法提供准确的分析。</p>
+  </div>
 
-<div class="card">
-    <h3>AI 投资热潮：巨头押注未来</h3>
-    <p>报告预测，美国科技巨头 Alphabet、 Amazon、 Meta 和 Microsoft 预计在 2026 年集体投资约 6500 亿美元，以扩大 AI 相关业务。 这些投资表明，科技巨头对 AI 领域的未来前景充满信心，他们正试图通过大规模投资来赢得竞争优势。 然而，巨额投资能否带来相应的回报，以及是否存在投资过热的风险，仍需持续关注。<a href="https://www.reuters.com/business/big-tech-invest-about-650-billion-ai-2026-bridgewater-says-2026-02-23/">来源</a> </p>
-</div>
+  <div class="company">
+    <h3>宁德时代 (CATL)</h3>
+    <p>由于信息不足，无法提供准确的分析。</p>
+  </div>
 
-<div class="card">
-    <h3>AI 应用拓展：智能硬件的新战场</h3>
-    <p>Razer（雷蛇）发布 Project Motoko AI 驱动的耳机，内置摄像头，可以识别周围环境并回答问题，续航时间长达 36 小时。Sony 的 Afeela 原型 SUV 内置 Astro Bot。 Satellai 推出宠物智能项圈 Collar Go，可以监测宠物健康状况并进行 GPS 追踪。 这反映了 AI 技术正加速渗透到各种智能硬件设备中，为用户提供更加个性化和智能化的体验。未来，智能硬件将成为 AI 应用的重要载体，并带来新的商业机会。<a href="https://www.cnet.com/news-live/ces-2026-news-live-updates/">来源</a></p>
+  <div class="company">
+    <h3>中国海洋石油 (CNOOC)</h3>
+    <p>由于信息不足，无法提供准确的分析。</p>
+  </div>
 </div>
-
-<p><b>总结：</b>2026 年的 AI 领域，既有硬件巨头的持续领先，也有初创公司的创新尝试；既有技术应用的加速落地，也有伦理风险的日益凸显。在激烈的竞争中，谁能把握技术趋势、抓住市场机遇、控制潜在风险，谁就能在 AI 时代的竞争中赢得先机。值得注意的是，文中并未提及苹果、谷歌、华为、宁德时代、汇丰控股、腾讯等巨头的直接动向，可能是由于新闻素材的局限性。 但可以推断，这些公司也会在各自的优势领域积极布局 AI，以应对未来的挑战。</p>
 
 </body>
-</html></main>
-        <footer>
-            <p>© 2026 AIClaw Agent | Powered by Gemini 2.0 & Tavily</p>
-        </footer>
+</html>
+        </div>
+
+        <div id="analysis" class="tab-content">
+            <!DOCTYPE html>
+<html>
+<head>
+<title>证券分析报告</title>
+<style>
+body {
+    font-family: sans-serif;
+}
+.news-list {
+    margin-bottom: 20px;
+}
+.news-list h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.news-list ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+.stock-analysis h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.stock-analysis h3 {
+    font-size: 1em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.stock-analysis p {
+    margin-bottom: 10px;
+}
+.stock-analysis .company {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="news-list">
+  <h2>今日科技/财经新闻</h2>
+  <ul>
+    <li>中国数字服务出口激增，阿里巴巴、腾讯引领全球扩张。</li>
+    <li>ByteDance 加入阿里巴巴、腾讯的行列，竞相提供免费服务以获取 AI 应用用户。</li>
+    <li>中国科技股在 2026 年获得动力，中美贸易缓和稳定了关税，并为 AI、EV 和芯片的进步打开了窗口。</li>
+    <li>小米电动车交付量超过 60 万辆。</li>
+    <li>中国年轻观众越来越喜欢以年长参赛者为主角的约会节目。</li>
+    <li>习近平考察北京创新园，强调中国对高水平技术发展的关注。</li>
+    <li>蔚来汽车因“屏幕黑屏”问题召回 24.6 万辆电动汽车。</li>
+    <li>寒武纪赢得腾讯健康“AI赋能未来奖”。</li>
+    <li>小米开始接受升级版 SU7 轿车的预订，强调安全功能。</li>
+    <li>和赛计划将激光雷达产能翻倍至 400 万台。</li>
+    <li>小米股价上涨至 36.56 港元，涨幅达 3.39%。</li>
+    <li>分析师普遍预计小米 (1810) 股票的12个月平均目标价是 56.11 港元。</li>
+    <li>小米下一份收益报告将于 2026 年 3 月 24 日发布。</li>
+    <li>腾讯在人工智能应用领域面临激烈的竞争。</li>
+    <li>小米SU7电动轿车将于2026年4月上市。</li>
+  </ul>
+</div>
+
+<div class="stock-analysis">
+  <h2>投资研报</h2>
+
+  <div class="company">
+    <h3>腾讯 (0700.HK)</h3>
+    <h4>最新公司消息</h4>
+    <p>腾讯获得了“AI赋能未来奖”，中国数字服务出口业务正在蓬勃发展，腾讯是该领域的领头羊之一。但是，腾讯也在积极参与人工智能应用领域的激烈竞争中。</p>
+    <h4>走势回顾</h4>
+    <p>2026年2月13日收盘价为532.00港元，下跌0.65%。过去一年上涨了19.77%。</p>
+    <h4>核心驱动点</h4>
+    <p>中美贸易关系缓和以及在人工智能（AI）领域的进步是关键驱动因素。数字服务出口的增长也推动了收入的增长。</p>
+    <h4>投资评级建议</h4>
+    <p>目前分析师普遍评级为“强烈买入”，平均12个月目标价为752.70港元，存在44.19%的上涨空间。但需注意人工智能领域的激烈竞争。</p>
+  </div>
+
+  <div class="company">
+    <h3>小米 (1810.HK)</h3>
+    <h4>最新公司消息</h4>
+    <p>小米电动汽车（SU7）交付量已超过60万辆。公司开始接受升级版 SU7 轿车的预订，并且在开发AI，芯片和提高可持续性上进行投资。下一份收益报告将于 2026 年 3 月 24 日发布。</p>
+    <h4>走势回顾</h4>
+    <p>2026年2月13日收盘价为36.84港元，上涨0.88%。过去一年下跌了16.46%。</p>
+    <h4>核心驱动点</h4>
+    <p>智能生态系统的扩张、高档产品的推广以及全球零售业务的拓展是主要的驱动因素。电动汽车业务的进展也是一个关键因素。</p>
+    <h4>投资评级建议</h4>
+    <p>分析师普遍建议“买入”，平均12个月目标价为56.11港元，比当前价格有显著的上涨空间。但是需要注意的是，近期的分析师评级有所下调，请谨慎投资。</p>
+  </div>
+
+    <div class="company">
+    <h3>汇丰 (HSBC)</h3>
+    <p>由于信息不足，无法提供准确的分析。</p>
+  </div>
+
+  <div class="company">
+    <h3>宁德时代 (CATL)</h3>
+    <p>由于信息不足，无法提供准确的分析。</p>
+  </div>
+
+  <div class="company">
+    <h3>中国海洋石油 (CNOOC)</h3>
+    <p>由于信息不足，无法提供准确的分析。</p>
+  </div>
+</div>
+
+</body>
+</html>
+        </div>
     </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+    <footer>© 2026 AIClaw Finance Intelligence | 免责声明：AI 总结不构成投资建议</footer>
 </body>
 </html>
