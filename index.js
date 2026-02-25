@@ -92,7 +92,7 @@ async function main() {
 <body>
     <div class="container">
         <header>
-            <h1>AIClaw Intelligence</h1>
+            <h1>YLH daily AI news</h1>
             <div class="meta">巨头情报局 · 实时扫描中</div>
             <div style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Update: ${new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'})}</div>
         </header>
