@@ -17,33 +17,26 @@ async function fetchNews() {
 }
 
 async function summarizeNews(newsArray) {
-    console.log("正在调用 Gemini 2.0 Flash 生成简报...");
+    console.log("正在调用 Gemini 1.5 Flash (v1beta) 生成简报...");
     const prompt = `你是一个科技主编，请根据以下新闻素材，总结成一份简报。
     要求：1. 使用中文；2. 语气专业且幽默；3. 每个条目包含标题、精简总结、原文链接。
     素材如下：${JSON.stringify(newsArray)}`;
 
-    // 修正：使用 v1 版本接口，并换成更通用的 gemini-2.0-flash 或 gemini-1.5-flash-latest
-    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`;
+    // 终极 URL 格式：使用 v1beta 和最基础的 gemini-1.5-flash 名称
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
 
-    try {
-        const response = await axios.post(url, {
-            contents: [{ parts: [{ text: prompt }] }]
-        });
+    const response = await axios.post(url, {
+        contents: [{
+            parts: [{ text: prompt }]
+        }]
+    }, {
+        headers: { 'Content-Type': 'application/json' }
+    });
 
-        if (response.data && response.data.candidates && response.data.candidates[0].content) {
-            return response.data.candidates[0].content.parts[0].text;
-        } else {
-            console.error("Gemini 返回原始数据:", JSON.stringify(response.data));
-            throw new Error("Gemini 返回数据解析失败");
-        }
-    } catch (err) {
-        // 如果 2.0 还没在你的区域完全开放，备选方案使用 gemini-1.5-flash-latest
-        console.warn("尝试 2.0 失败，正在回退至 1.5-latest...");
-        const fallbackUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_KEY}`;
-        const fallbackRes = await axios.post(fallbackUrl, {
-            contents: [{ parts: [{ text: prompt }] }]
-        });
-        return fallbackRes.data.candidates[0].content.parts[0].text;
+    if (response.data && response.data.candidates) {
+        return response.data.candidates[0].content.parts[0].text;
+    } else {
+        throw new Error("Gemini 返回数据解析失败，请检查 API Key");
     }
 }
 
